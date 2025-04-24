@@ -1,0 +1,273 @@
+/* General Body and Container Styling (Keep previous styles) */
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.App {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header (Keep previous styles) */
+.App-header {
+  background-color: #1e1e1e;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  color: #1db954;
+  text-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+}
+
+/* Search Form (Keep previous styles) */
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 12px 15px;
+  border: 1px solid #333;
+  border-radius: 25px;
+  font-size: 1.1em;
+  width: 70%;
+  max-width: 500px;
+  background-color: #282828;
+  color: #e0e0e0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #1db954;
+  box-shadow: 0 0 8px rgba(29, 185, 84, 0.4);
+}
+
+.search-button {
+  padding: 12px 30px;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.search-button:hover {
+  background-color: #1ed760;
+}
+
+.search-button:active {
+  transform: scale(0.98);
+}
+
+/* Messages (Loading, Error, No Results) (Keep previous styles, add status-message) */
+.status-message {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #bbb;
+}
+
+.error-message {
+  color: #ff6b6b;
+}
+
+/* Loading Indicator (Basic) (Keep previous styles) */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid #1db954;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+/* --- New Styles for Visual Display --- */
+
+/* Now Playing Area */
+.now-playing {
+  background-color: #1db954; /* Green background */
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px auto; /* Center and add margin */
+  max-width: 600px; /* Limit width */
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  box-shadow: 0 2px 10px rgba(29, 185, 84, 0.5); /* Green glow/shadow */
+  animation: pulseGlow 1.5s infinite alternate; /* Add a pulsing glow animation */
+}
+
+@keyframes pulseGlow {
+  from {
+    box-shadow: 0 2px 10px rgba(29, 185, 84, 0.5);
+  }
+  to {
+    box-shadow: 0 2px 20px rgba(29, 185, 84, 0.8);
+  }
+}
+
+/* Track List Layout (Keep previous grid styles) */
+.track-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(240px, 1fr)
+  ); /* Adjusted min width */
+  gap: 25px; /* Increased gap */
+  padding: 0;
+  list-style: none;
+}
+
+/* Individual Track Item (Enhanced Styling) */
+.track-item {
+  background: linear-gradient(
+    145deg,
+    #282828,
+    #1e1e1e
+  ); /* Gradient background */
+  border-radius: 10px; /* More rounded corners */
+  padding: 20px; /* Increased padding */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out,
+    border-color 0.3s ease; /* Smooth transition */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid transparent; /* Add a transparent border for playing state */
+}
+
+.track-item:hover {
+  transform: translateY(-8px) rotateZ(1deg); /* More pronounced lift and slight rotation */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+  cursor: pointer; /* Indicate it's interactive (though clicking the card doesn't do anything yet) */
+}
+
+/* Style for the actively playing track item */
+.track-item.playing {
+  border-color: #1db954; /* Green border */
+  box-shadow: 0 6px 20px rgba(29, 185, 84, 0.6); /* Green glow */
+  transform: scale(1.03); /* Slightly larger pulse */
+  animation: pulseScale 1.5s infinite alternate; /* Add pulse animation */
+}
+
+@keyframes pulseScale {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.album-cover {
+  width: 200px; /* Larger cover size */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px; /* Slightly more rounded cover */
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.track-item:hover .album-cover {
+  transform: scale(1.05); /* Slightly zoom cover on hover */
+}
+
+.track-info {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #e0e0e0; /* Ensure text color is readable */
+}
+
+.track-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.2em; /* Slightly larger title */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff; /* White title */
+}
+
+.track-info p {
+  margin: 0 0 15px 0;
+  font-size: 1em; /* Slightly larger artist/album text */
+  color: #b3b3b3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-item audio {
+  width: 100%;
+  max-width: 220px; /* Adjust max width */
+  margin-top: auto;
+  filter: invert(80%) sepia(20%) saturate(1000%) hue-rotate(80deg)
+    brightness(95%) contrast(90%); /* Style audio controls (might not work perfectly across browsers) */
+  /* You might need custom audio player components for consistent styling */
+}
+
+/* Fade-in Animation for Track Items (Keep previous styles) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  } /* Added translateY */
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.track-list .track-item {
+  animation: fadeIn 0.6s ease-out forwards; /* Slightly longer animation */
+  /* Consider using React Transition Group for animating items as they appear */
+}
+
+/* Add a delay for items in the grid to make the animation staggered */
+.track-list .track-item:nth-child(1) {
+  animation-delay: 0s;
+}
+.track-list .track-item:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.track-list .track-item:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.track-list .track-item:nth-child(4) {
+  animation-delay: 0.15s;
+}
+.track-list .track-item:nth-child(5) {
+  animation-delay: 0.2s;
+}
+/* ... add more for more items or use JS to calculate delay dynamically */
